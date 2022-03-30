@@ -1,6 +1,6 @@
 steps:
   - id: Running unit tests
-    name: 'go'
+    name: 'gcr.io/cloud-builders/go'
     args: ['go', 'test', './...']
   - id: Building go lang image
     name: 'gcr.io/cloud-builders/docker'
