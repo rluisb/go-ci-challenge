@@ -3,7 +3,7 @@ steps:
     name: 'gcr.io/cloud-builders/go'
     env:
       - GOPATH=
-    args: ['test','./...']
+    args: ['rm -rf $GOPATH/go.mod', '&&', test','./...']
   - id: Building go lang image
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/go-ci-challenge', '.']
