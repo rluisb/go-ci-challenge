@@ -1,7 +1,9 @@
 steps:
   - id: Running unit tests
     name: 'gcr.io/cloud-builders/go'
-    args: ['env', '-u', 'GOPATH','test','./...']
+    env:
+      - GOPATH=
+    args: ['test','./...']
   - id: Building go lang image
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/go-ci-challenge', '.']
