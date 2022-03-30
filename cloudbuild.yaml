@@ -1,0 +1,8 @@
+steps:
+  - id: Running unit tests
+    name: 'go'
+    args: ['go', 'test', './...']
+  - id: Building go lang image
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/go-ci-challenge', '.']
+images: ['gcr.io/$PROJECT_ID/go-ci-challenge']
