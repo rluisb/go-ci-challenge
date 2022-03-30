@@ -1,8 +1,10 @@
 steps:
-  - id: Running unit tests
-    name: 'gcr.io/cloud-builders/go'
-    args: ['env']
-  - id: Building go lang image
-    name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/go-ci-challenge', '.']
-images: ['gcr.io/$PROJECT_ID/go-ci-challenge']
+- name: 'gcr.io/cloud-builders/go'
+  args: ['install', '.']
+  env: ['PROJECT_ROOT=app']
+- name: 'gcr.io/cloud-builders/go'
+  args: ['test', './...']
+  env: ['PROJECT_ROOT=app']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/$REPO_NAME/calculator', '.']
+images: ['gcr.io/$PROJECT_ID/$REPO_NAME/calculator']
